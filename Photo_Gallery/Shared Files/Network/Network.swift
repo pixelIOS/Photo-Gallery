@@ -11,18 +11,11 @@ class Network{
     class func sendGetRequest(completion: @escaping(Data) -> Void){
         let api = "https://api.unsplash.com/photos/?client_id=\(Access_Key)"
         
-//        let username = "candidate"
-//        let password = "Ahs6aiX7"
-//        let loginString = String(format: "%@:%@", username, password)
-//        let loginData = loginString.data(using: String.Encoding.utf8)!
-//        let base64LoginString = loginData.base64EncodedString()
-        
         guard let url = URL(string: api) else {return}
                 
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, let response = response as? HTTPURLResponse, error == nil else {
